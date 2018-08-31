@@ -1,0 +1,10 @@
+
+
+{ 
+  "graph": { 
+    "node": { "id": 0, "info": "node 0" },
+    "node": { "id": 1, "info": "node 1" },
+    "node": { "id": 2, "info": "node 2" },
+    "edge": { "endpoints": [0,1], "info": "0 to 1" },
+    "edge": { "endpoints": [0,2], "info": "0 to 2" }
+  }
