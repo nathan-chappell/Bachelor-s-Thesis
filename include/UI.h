@@ -3,7 +3,7 @@
 
 #include <gtkmm-3.0/gtkmm.h>
 
-#include "common.h"
+#include "common_graph.h"
 
 /**
  * \brief \class MyDrawingArea is derived from the Gtk and offers additional

@@ -4,7 +4,7 @@
 #include <list>
 #include <vector>
 
-#include "common.h"
+#include "common_graph.h"
 
 /**
  * \brief \function DfsGridDrawing assigns positions to nodes by going through

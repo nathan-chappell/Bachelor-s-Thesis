@@ -1,7 +1,7 @@
 // parse_functions.h
 #pragma once
 
-#include "common.h"
+#include "common_graph.h"
 
 #include <functional>
 #include <iostream>

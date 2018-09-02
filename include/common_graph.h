@@ -1,4 +1,4 @@
-// common.h
+// common_graph.h
 #pragma once
 
 #include <complex>

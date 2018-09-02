@@ -1,7 +1,7 @@
 // graph_parser.h
 #pragma once
 
-#include "common.h"
+#include "common_graph.h"
 #include "nav_graph.h"
 #include "parse_functions.h"
 

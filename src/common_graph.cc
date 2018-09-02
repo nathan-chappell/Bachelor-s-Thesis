@@ -1,6 +1,6 @@
 // common.cc
 
-#include "common.h"
+#include "common_graph.h"
 
 using namespace std;
 

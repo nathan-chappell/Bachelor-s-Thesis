@@ -10,7 +10,7 @@
  *
  */
 
-#include "common.h"
+#include "common_graph.h"
 
 #include <list>
 #include <string>
