@@ -18,6 +18,15 @@
 
 class NavGraph;
 
+namespace std {
+template <> struct hash<Endpoints> {
+  size_t operator()(const Endpoints &e) const {
+    return std::hash<NodeId>()(e.l) +
+           (std::hash<NodeId>()(e.r) << 8 * sizeof(NodeId));
+  }
+};
+}; // namespace std
+
 /**
  * \brief \class NavNode is the fundamental node type which the graph shall
  * maintain.
@@ -77,6 +86,9 @@ public:
   bool check_Edge(const Endpoints &e) const;
   void add_node(NavNode&& node);
   void add_edge(const Endpoints &e, EdgeInfo&& info);
+
+  size_t num_nodes() const;
+  size_t num_edges() const;
 
   EdgeInfo get_EdgeInfo(const Endpoints &e) const;
 

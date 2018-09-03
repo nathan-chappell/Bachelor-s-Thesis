@@ -17,6 +17,11 @@ const int KEY_MINUS = 65453;
 const double zoom_factor = 1.1;
 const double PI = 4 * atan(1);
 
+AffineTx::AffineTx() : translate(0.0, 0.0), scale(1.0) {}
+
+void AffineTx::operator+=(C c) { translate += c; }
+void AffineTx::operator*=(double d) { scale *= d; }
+
 MyWindow::MyWindow(AffineTx &tx) : tx_(tx) {
   set_default_size(800, 800);
   add_events(Gdk::KEY_PRESS_MASK | Gdk::SCROLL_MASK);

@@ -6,6 +6,18 @@
 #include "common_graph.h"
 
 /**
+ * \brief \class AffineTx is an affine translation.
+ */
+struct AffineTx {
+  C translate;
+  double scale;
+
+  AffineTx();
+  void operator+=(C);      // effects translate
+  void operator*=(double); // effects scale
+};
+
+/**
  * \brief \class MyDrawingArea is derived from the Gtk and offers additional
  * functionality.
  */

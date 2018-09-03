@@ -1,7 +1,15 @@
 // common_graph.h
 #pragma once
 
+/**
+ * \file common_graph.h is common stuff for things after the parsing phase is complete
+ */
+
 #include <complex>
+
+using C = std::complex<double>;
+using Grid = std::complex<int>;
+using NodeId = unsigned;
 #include <functional>
 #include <limits>
 #include <list>
@@ -13,10 +21,6 @@
  * the y.  In gtkmm, the y component is reversed, so increasing a shape's y
  * coordinates will move it DOWNWARD.
  */
-
-using C = std::complex<double>;
-using Grid = std::complex<int>;
-using NodeId = unsigned;
 
 struct Endpoints {
   NodeId l, r;
@@ -45,27 +49,6 @@ struct EdgeInfo {
 
 bool operator==(const Endpoints &, const Endpoints &);
 bool operator!=(const Endpoints &, const Endpoints &);
-
-namespace std {
-template <> struct hash<Endpoints> {
-  size_t operator()(const Endpoints &e) const {
-    return std::hash<NodeId>()(e.l) +
-           (std::hash<NodeId>()(e.r) << 8 * sizeof(NodeId));
-  }
-};
-}; // namespace std
-
-/**
- * \brief \class AffineTx is an affine translation.
- */
-struct AffineTx {
-  C translate;
-  double scale;
-
-  AffineTx();
-  void operator+=(C);      // effects translate
-  void operator*=(double); // effects scale
-};
 
 struct BoundingRectangle {
   C upper_left;

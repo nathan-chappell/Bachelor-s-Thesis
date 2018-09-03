@@ -49,11 +49,6 @@ bool operator!=(const Endpoints &e1, const Endpoints &e2) {
   return !(e1 == e2);
 }
 
-AffineTx::AffineTx() : translate(0.0, 0.0), scale(1.0) {}
-
-void AffineTx::operator+=(C c) { translate += c; }
-void AffineTx::operator*=(double d) { scale *= d; }
-
 BoundingRectangle::BoundingRectangle(C ul, C lr)
     : upper_left(ul), lower_right(lr) {}
 

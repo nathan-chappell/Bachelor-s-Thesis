@@ -67,6 +67,9 @@ void UnderlyingGraph::add_edge(const Endpoints &e, EdgeInfo &&info) {
   edge_info_[e] = std::move(info);
 }
 
+size_t UnderlyingGraph::num_nodes() const { return nodes_.size(); }
+size_t UnderlyingGraph::num_edges() const { return edges_.size(); }
+
 EdgeInfo UnderlyingGraph::get_EdgeInfo(const Endpoints &e) const {
   if (!edge_info_.count(e))
     return EdgeInfo("");

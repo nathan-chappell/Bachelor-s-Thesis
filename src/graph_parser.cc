@@ -144,14 +144,12 @@ pair<Endpoints, EdgeInfo> parse_Edge(const string &source, parse_state &state) {
   return make_pair<Endpoints, EdgeInfo>(move(endpoints), move(edgeInfo));
 }
 
-UnderlyingGraph parse_UnderlyingGraph(const string &source,
-                                      parse_state &state) {
+UnderlyingGraph parse_UnderlyingGraph_Data(const string &source,
+                                           parse_state &state) {
   UnderlyingGraph graph;
   NavNode curNode;
   pair<Endpoints, EdgeInfo> curEdge;
   string attribute;
-  bool have_nodes = false;
-  bool have_edges = false;
 
   while (true) {
     eat_ws(source, state);
@@ -204,12 +202,12 @@ UnderlyingGraph parse_UnderlyingGraph(const string &source,
     }
   }
 
-  if (!have_nodes) {
+  if (graph.num_nodes() == 0) {
     *state.error_log << "Warning: no nodes read at: " << state.position()
                      << endl;
   }
 
-  if (!have_edges) {
+  if (graph.num_edges() == 0) {
     *state.error_log << "Warning: no edges read at: " << state.position()
                      << endl;
   }
@@ -235,14 +233,8 @@ string get_file(const string &fname) {
  * start.
  */
 
-UnderlyingGraph parse_UnderlyingGraphFromFile(const string &fname) {
-  parse_state dummy;
-  return parse_UnderlyingGraphFromFile(fname, dummy);
-}
-
-UnderlyingGraph parse_UnderlyingGraphFromFile(const string &fname, parse_state& state) {
+UnderlyingGraph parse_UnderlyingGraph(const string &source, parse_state &state) {
   UnderlyingGraph graph;
-  string source = get_file(fname);
   string attribute;
 
   eat_ws(source, state);
@@ -255,7 +247,7 @@ UnderlyingGraph parse_UnderlyingGraphFromFile(const string &fname, parse_state& 
   }
 
   eat_ws(source, state);
-  graph = parse_UnderlyingGraph(source, state);
+  graph = parse_UnderlyingGraph_Data(source, state);
   eat_ws(source, state);
   check_for_char(source, state, '}');
   eat_ws(source, state);
@@ -268,4 +260,15 @@ UnderlyingGraph parse_UnderlyingGraphFromFile(const string &fname, parse_state& 
   }
 
   return move(graph);
+}
+
+UnderlyingGraph parse_UnderlyingGraphFromFile(const string &fname) {
+  parse_state dummy;
+  return parse_UnderlyingGraphFromFile(fname, dummy);
+}
+
+UnderlyingGraph parse_UnderlyingGraphFromFile(const string &fname,
+                                              parse_state &state) {
+  string source = get_file(fname);
+  return parse_UnderlyingGraph(source, state);
 }
