@@ -59,8 +59,8 @@ void run_tests(const vector<string> &display_files) {
       cout << "----------------------------------------" << endl;
       cout << "displaying: " << fileStat.first << ", expecting:" << endl;
       for (auto &&predicate_stat : fileStat.second) {
-        cout << "\t" << predicate_stat.second.first << ": "
-             << predicate_stat.second.second << endl;
+        cout << "\t" << clang_predicate_info(predicate_stat.first) << ": "
+             << predicate_stat.second << endl;
       }
       cout << "<---" << endl;
     }
@@ -68,14 +68,14 @@ void run_tests(const vector<string> &display_files) {
         index, (dir + fileStat.first).c_str(), 0, nullptr, 0, nullptr);
     for (auto &&predicate_stat : fileStat.second) {
       if (display) {
-        cout << predicate_stat.second.first << endl;
+        cout << clang_predicate_info(predicate_stat.first) << endl;
       }
       // run test
       int result = tally_predicates(predicate_stat.first, TU, display);
       // check results
-      if (result != predicate_stat.second.second) {
+      if (result != predicate_stat.second) {
         ++failed_tests;
-        cout << "fail on predicate: " << predicate_stat.second.first;
+        cout << "fail on predicate: " << clang_predicate_info(predicate_stat.first);
         if (!display) {
           cout << ", file: " << fileStat.first << endl;
         } else {
