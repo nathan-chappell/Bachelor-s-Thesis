@@ -161,9 +161,9 @@ void test_parse_UnderlyingGraph() {
   garbage << "entering: " << __func__ << endl;
   pair<Endpoints, EdgeInfo> result;
   list<string> bad_sources =
-      move(read_graph_sources("test_files/bad_UG.test_file"));
+      move(read_graph_sources("test_files/parser_testing/bad_UG.test_file"));
   list<string> good_sources =
-      move(read_graph_sources("test_files/good_UG.test_file"));
+      move(read_graph_sources("test_files/parser_testing/good_UG.test_file"));
   string source;
 
   //"testing bad sources"
@@ -193,10 +193,10 @@ void test_parse_UnderlyingGraphFromFile() {
   garbage << "entering: " << __func__ << endl;
   UnderlyingGraph result;
   list<string> bad_sources = {
-      "test_files/bad_UGFromFile1.test_file", "test_files/bad_UGFromFile2.test_file",
-      "test_files/bad_UGFromFile3.test_file", "test_files/bad_UGFromFile4.test_file"};
+      "test_files/parser_testing/bad_UGFromFile1.test_file", "test_files/parser_testing/bad_UGFromFile2.test_file",
+      "test_files/parser_testing/bad_UGFromFile3.test_file", "test_files/parser_testing/bad_UGFromFile4.test_file"};
 
-  list<string> good_sources = {"test_files/good_UGFromFile.test_file"};
+  list<string> good_sources = {"test_files/parser_testing/good_UGFromFile.test_file"};
 
   //"testing bad sources"
   for (auto &&source : bad_sources) {

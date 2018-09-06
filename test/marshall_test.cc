@@ -1,6 +1,6 @@
 //marshall_test.cc
 
-#include "marshaller.h"
+#include "../include/marshaller.h"
 #include "../include/graph_parser.h"
 
 #include <iostream>

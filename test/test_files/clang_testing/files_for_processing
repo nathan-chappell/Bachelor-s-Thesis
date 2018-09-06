@@ -1,0 +1,6 @@
+//these files should get eaten
+graph_parser_test.cc -Wall -g -O0
+clanger.cc -Wall -g -c -O0
+
+//that's all folks!
+
